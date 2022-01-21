@@ -15,14 +15,13 @@ const loadJson = () => {
                 movie.innerHTML += `<p>${json.results[i].opening_crawl}</p>`
                 list.appendChild(movie)
             }
-        }).catch(() => {
-            console.log('Hubo un error cargando las peliculas!');
+        }).catch((err) => {
+            console.log('Hubo un error cargando las peliculas!' + err);
         })
         .then(json=> {      
             const characterList = json.results.map((results)=> {
-                const movie = document.createElement('li')
                 let castList = '<ul>'
-                const toons = results.characters.map(async (toon)=>await fetch(toon).then(res=>res.json()))
+                const toons = results.characters.map(async (toon)=>await Promise.all(toon).then(res=>res.json()))
                 results.characters = toons;
                 return results;
                 })
@@ -32,7 +31,7 @@ const loadJson = () => {
                return json; 
                
         
-        }).catch(() => {
-            console.log('Hubo un error cargando los personajes!');
+        }).catch((err) => {
+            console.log('Hubo un error cargando los personajes!' + err);
         })
 }
