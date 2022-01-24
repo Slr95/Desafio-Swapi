@@ -5,7 +5,12 @@
 
 
 const loadJson = async () => {
-    const response = await fetch('https://swapi.dev/api/films')
+    const response = await fetch('https://swapi.dev/api/films', { //Arreglando los bloqueos de CORS
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS',   
+    })
+    
     const json = await response.json()
     const list = document.querySelector('ul')
     for (let i = 0; i < json.results.length; i++) {
