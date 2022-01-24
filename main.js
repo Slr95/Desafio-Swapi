@@ -3,6 +3,7 @@
 //dar una respuesta si algo anda mal en ese fetch por consola con el catch. En esas 3 promesas
 //Cosas secundarias para hacer: mejorar el codigo, agregar el catch, hacerlo con asyc await, agregar css
 
+
 const loadJson = async () => {
     const response = await fetch('https://swapi.dev/api/films')
     const json = await response.json()
@@ -30,6 +31,6 @@ const getCharacters = async (url) => {
         const data = await response.json()
     return data.name
     } catch(err) {
-        console.log(err);
+        console.log('Hubo un error cargando los personajes!' + err);
     }
 }
